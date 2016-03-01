@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JSM Producer</title>
+		<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
+	</head>
+	<body>
+	    <button id="test">Send an HTTP POST request to a page and get the result back</button>
+		<script type="text/javascript">
+			function incrementa() {
+				$.post("consumer",
+				    {
+						destinationJNDI: "java:jboss/queues/myQueue",
+						connectionFactoryJNDI:"java:/ConnectionFactory2"
+					},
+					function(data,status){
+						console.log(data);
+			        }
+				);
+			}
+			$("#test").click(function(){
+				start();
+				console.log("timer has started!!!");
+			});
+			var refreshTimer=null;
+			function start(){
+				if(!refreshTimer){
+					refreshTimer = window.setInterval("incrementa()",1000);
+				}
+			}
+			
+		</script>
+	</body>
+</html>

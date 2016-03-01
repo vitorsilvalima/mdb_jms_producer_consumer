@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta charset=UTF-8">
+	<title>JMS Producer</title>
+</head>
+<body>
+	<h1>JMS Procucer</h1>
+	<p>This application is JMS producer that allows you to send 
+	test messages to a specific topic/queue through a specific connection factory</p>
+	<p>Enter the required info:</p>
+	<form method="post">
+		<table>
+			<tr>
+				<td>Connection Factory JNDI name: </td>
+				<td><input type="text" width="60" name="connectionFactoryJNDI" /></td>
+			</tr>
+			<tr>
+				<td>Destination JNDI name: </td>
+				<td><input type="text" width="60" name="destinationJNDI" /></td>
+			</tr>
+			<tr>
+				<td>Number of test messages to send: </td>
+				<td><input type="text" width="60" name="nMessages" value="5" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="Submit"/></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

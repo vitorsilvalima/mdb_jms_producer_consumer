@@ -1,0 +1,3 @@
+org/vitorsilvalima/jmstester/consumer/JMSListener.class
+org/vitorsilvalima/jmstester/producer/JSMProducerServlet.class
+org/vitorsilvalima/jmstester/consumer/JSMConsumerServlet.class
