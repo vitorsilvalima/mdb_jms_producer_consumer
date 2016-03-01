@@ -28,6 +28,7 @@ public class JSMProducerServlet extends HttpServlet
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String connectiondFactoryJNDI= req.getParameter("connectionFactoryJNDI");
 		String destinationJNDI= req.getParameter("destinationJNDI");
+		String messageStr= req.getParameter("message");
 		int nMessages= Integer.parseInt(req.getParameter("nMessages"));
 		PrintWriter out = resp.getWriter();
 		Context context = null;	
@@ -56,14 +57,16 @@ public class JSMProducerServlet extends HttpServlet
 			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			MessageProducer producer = session.createProducer(destination);
 			TextMessage message = session.createTextMessage();
-			for(;nMessages>0;nMessages--)
-			{
-				message.setText("Oi"+nMessages);
-				producer.send(message);
+			if(nMessages>0 && messageStr!=null && !messageStr.equals("")){
+				for(int i=1;i<=nMessages;i++)
+				{
+					message.setText("Count: "+i+" Message: "+messageStr);
+					producer.send(message);
+				}
+				producer.close();
+				connection.close();
+				out.print("<h1>All messages were successfully sent!!!</h1>");
 			}
-			producer.close();
-			connection.close();
-			out.print("<h1>All messages were successfully sent!!!</h1>");
 		}catch(Exception e) {
 			out.println("<p>An exception occurred while sending test messages: " + e.getMessage() + "</p>");
 		}
